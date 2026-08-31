@@ -1,0 +1,78 @@
+---
+// src/components/sections/home/CTASection.astro
+import { siteConfig } from '../../../config/site';
+---
+
+<section class="bg-primary relative overflow-hidden py-24 text-white lg:py-36">
+  <!-- Subtle Background Pattern Overlay -->
+  <div class="pointer-events-none absolute inset-0 opacity-10">
+    <svg
+      class="h-full w-full"
+      width="100%"
+      height="100%"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <pattern
+          id="cta-grid"
+          width="40"
+          height="40"
+          patternUnits="userSpaceOnUse"
+        >
+          <path
+            d="M 40 0 L 0 0 0 40"
+            fill="none"
+            stroke="#FFFFFF"
+            stroke-width="1"></path>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#cta-grid)"></rect>
+    </svg>
+  </div>
+
+  <!-- Ambient Glow -->
+  <div
+    class="bg-accent/20 pointer-events-none absolute -right-24 -bottom-24 h-96 w-96 rounded-full blur-3xl"
+  >
+  </div>
+
+  <!-- Container Lebar (Mepet Screen) -->
+  <div class="relative z-10 mx-auto max-w-[96rem] px-6 text-center lg:px-12">
+    <div class="reveal mx-auto max-w-4xl">
+      <span
+        class="text-accent mb-4 block text-xs font-semibold tracking-[0.3em] uppercase sm:text-sm"
+      >
+        Bespoke Concierge Service
+      </span>
+
+      <h2
+        class="font-heading text-4xl leading-[1.05] font-normal tracking-tight text-white uppercase sm:text-6xl lg:text-7xl"
+      >
+        Wujudkan Momen Spesial Anda Bersama Aura Fleur
+      </h2>
+
+      <!-- CTA Action Buttons -->
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-5">
+        <a
+          href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Halo%20Aura%20Fleur,%20saya%20ingin%20konsultasi%20pesanan%20bunga%20eksklusif.`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="border-accent bg-accent hover:bg-accent-hover border px-9 py-4 text-xs font-bold tracking-widest text-white uppercase shadow-lg transition-all duration-300 focus:outline-none"
+        >
+          Konsultasi WhatsApp Sekarang
+        </a>
+        <a
+          href="/kontak"
+          class="border border-white/30 bg-transparent px-9 py-4 text-xs font-bold tracking-widest text-white uppercase transition-all duration-300 hover:border-white hover:bg-white/10 focus:outline-none"
+        >
+          Kunjungi Atelier Kami
+        </a>
+      </div>
+
+      <!-- Trust Note -->
+      <p class="mt-8 text-[11px] tracking-widest text-white/60 uppercase">
+        *Respon Cepat via Concierge WhatsApp • Pengiriman Mobil Berpendingin
+      </p>
+    </div>
+  </div>
+</section>

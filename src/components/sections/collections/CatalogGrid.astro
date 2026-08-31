@@ -1,0 +1,83 @@
+---
+// src/components/sections/collections/CatalogGrid.astro
+import { collectionCategories, productList } from '../../../config/content'
+import ProductCard from '../../ui/ProductCard.astro'
+---
+
+<section
+  x-data="{ activeCategory: 'all' }"
+  class="relative overflow-hidden bg-surface pt-32 pb-20 lg:pt-40 lg:pb-32"
+>
+  <div class="mx-auto max-w-[96rem] px-6 lg:px-12">
+
+    <!-- Header Editorial -->
+    <div class="reveal max-w-4xl">
+      <span class="mb-4 block text-xs font-semibold uppercase tracking-[0.3em] text-accent sm:text-sm">
+        Curated Floral Edition
+      </span>
+      <h1 class="font-heading text-4xl font-normal uppercase leading-[1.02] text-primary sm:text-6xl lg:text-7xl">
+        Koleksi Rangkaian Bunga
+      </h1>
+      <p class="mt-6 max-w-2xl text-base font-light leading-relaxed text-secondary/80 sm:text-lg">
+        Jelajahi karya seni floral eksklusif kami. Setiap buket dan vas dirangkai secara artisan dengan bunga segar pilihan terbaik.
+      </p>
+    </div>
+
+    <!-- Interactive Filter Categories (Alpine.js) -->
+    <div class="reveal mt-12 flex flex-wrap items-center gap-3 border-b border-border pb-8">
+      {
+        collectionCategories.map((cat) => (
+          <button
+            type="button"
+            x-on:click={`activeCategory = '${cat.id}'`}
+            :class={`activeCategory === '${cat.id}'
+              ? 'border-primary bg-primary text-white'
+              : 'border-border bg-surface-card text-secondary/80 hover:border-accent hover:text-accent'`}
+            class="border px-6 py-3 text-xs font-semibold uppercase tracking-widest transition-all duration-300 focus:outline-none"
+          >
+            {cat.label}
+          </button>
+        ))
+      }
+    </div>
+
+    <!-- Product Grid with Filter Smooth Transition -->
+    <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+      {
+        productList.map((product) => (
+          <div
+            x-show={`activeCategory === 'all' || activeCategory === '${product.category}'`}
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-95"
+            x-transition:enter-end="opacity-100 scale-100"
+            x-cloak
+            class="reveal"
+          >
+            <ProductCard product={product} />
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Empty State / Custom Order Note -->
+    <div class="mt-20 border border-border bg-surface-card p-8 text-center sm:p-12 shadow-xs">
+      <h3 class="font-heading text-2xl font-bold uppercase text-primary">
+        Tidak Menemukan Kombinasi Bunga Yang Dicari?
+      </h3>
+      <p class="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-secondary/75 sm:text-base">
+        Kami melayani pemesanan *Bespoke Custom Arrangement* sesuai dengan jenis bunga, skema warna, dan anggaran pilihan Anda.
+      </p>
+      <div class="mt-6">
+        <a
+          href="https://wa.me/6281234567890?text=Halo%20Aura%20Fleur,%20saya%20ingin%20konsultasi%20pemesanan%20bunga%20custom."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center border border-accent bg-accent px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-accent-hover"
+        >
+          Konsultasi Custom via WA
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

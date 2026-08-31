@@ -1,0 +1,132 @@
+---
+// src/components/core/Footer.astro
+import { siteConfig } from '../../config/site';
+---
+
+<footer class="border-border bg-surface text-secondary border-t">
+  <div class="mx-auto max-w-7xl px-6 py-16 lg:px-12 lg:py-20">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+      <!-- Column 1: Brand Info -->
+      <div class="flex flex-col items-start gap-4">
+        <a href="/" class="focus:outline-none">
+          <span
+            class="font-heading text-primary text-2xl font-bold tracking-widest uppercase"
+          >
+            {siteConfig.name}
+          </span>
+        </a>
+        <p class="text-secondary/70 text-xs leading-relaxed">
+          {siteConfig.description}
+        </p>
+        <span class="font-heading text-accent text-xs tracking-wider italic">
+          "Where Elegance Blooms"
+        </span>
+      </div>
+
+      <!-- Column 2: Navigation Links -->
+      <div class="flex flex-col gap-4">
+        <h3
+          class="font-heading text-primary text-xs font-semibold tracking-widest uppercase"
+        >
+          Navigasi Halaman
+        </h3>
+        <ul class="flex flex-col gap-2.5">
+          {
+            siteConfig.navigation.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-secondary/70 hover:text-accent text-xs transition-colors"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Column 3: Atelier Info & Operating Hours -->
+      <div class="flex flex-col gap-4">
+        <h3
+          class="font-heading text-primary text-xs font-semibold tracking-widest uppercase"
+        >
+          Atelier Location
+        </h3>
+        <p class="text-secondary/70 text-xs leading-relaxed">
+          {siteConfig.contact.address}
+        </p>
+        <div class="pt-1">
+          <h4
+            class="text-primary/90 text-[11px] font-semibold tracking-wider uppercase"
+          >
+            Jam Operasional:
+          </h4>
+          <p class="text-secondary/70 text-xs">
+            {siteConfig.contact.hours}
+          </p>
+        </div>
+      </div>
+
+      <!-- Column 4: Direct Contact & Concierge -->
+      <div class="flex flex-col gap-4">
+        <h3
+          class="font-heading text-primary text-xs font-semibold tracking-widest uppercase"
+        >
+          Layanan Concierge
+        </h3>
+        <p class="text-secondary/70 text-xs">
+          Butuh bantuan mendesak atau pemesanan kustom? Hubungi concierge kami
+          secara langsung:
+        </p>
+        <div class="flex flex-col gap-2">
+          <a
+            href={`https://wa.me/${siteConfig.contact.whatsapp}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-primary hover:text-accent inline-flex items-center gap-2 text-xs font-medium transition-colors"
+          >
+            <span>WhatsApp:</span>
+            <span>{siteConfig.contact.whatsappFormatted}</span>
+          </a>
+          <a
+            href={`mailto:${siteConfig.contact.email}`}
+            class="text-primary hover:text-accent inline-flex items-center gap-2 text-xs font-medium transition-colors"
+          >
+            <span>Email:</span>
+            <span>{siteConfig.contact.email}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar: Copyright & Socials -->
+    <div
+      class="border-border/60 mt-16 flex flex-col items-center justify-between gap-4 border-t pt-8 sm:flex-row"
+    >
+      <p class="text-secondary/60 text-[11px] tracking-wider uppercase">
+        &copy; {new Date().getFullYear()}
+        {siteConfig.name}. All rights reserved.
+      </p>
+
+      <div class="flex items-center gap-6">
+        <a
+          href={siteConfig.socials.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-secondary/70 hover:text-accent text-xs tracking-widest uppercase transition-colors"
+        >
+          Instagram
+        </a>
+        <a
+          href={siteConfig.socials.pinterest}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-secondary/70 hover:text-accent text-xs tracking-widest uppercase transition-colors"
+        >
+          Pinterest
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,156 @@
+@import 'tailwindcss';
+
+/* -------------------------------------------------------------------------- */
+/* 1. Theme Variables (Luxury Florist Palette & Typography)                   */
+/* -------------------------------------------------------------------------- */
+@theme {
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Cinzel', serif;
+
+  /* Luxury Color Palette */
+  --color-primary: #0a2e23; /* Deep Emerald / Forest Noir */
+  --color-primary-hover: #134e3e; /* Slightly Lighter Emerald */
+  --color-secondary: #18181b; /* Dark Charcoal / Near Black */
+  --color-accent: #c5a880; /* Soft Gold / Warm Champagne */
+  --color-accent-hover: #b39368; /* Deep Champagne */
+  --color-surface: #faf8f5; /* Soft Warm Ivory */
+  --color-surface-card: #ffffff; /* Pure White Card */
+  --color-border: #e8e2d8; /* Subtle Warm Border */
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. Base Styles (@layer base)                                              */
+/* -------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    background-color: var(--color-surface);
+    color: var(--color-secondary);
+  }
+
+  /* Typography Base Styling */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    letter-spacing: 0.03em;
+  }
+
+  /* Fix kedip Alpine.js saat pertama dimuat */
+  [x-cloak] {
+    display: none !important;
+  }
+
+  /* Custom Scrollbar minimalis ala Luxury Web */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-surface);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #d4cea3;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. Custom Utilities (@utility)                                             */
+/* -------------------------------------------------------------------------- */
+
+/* Utility Font Heading Khusus */
+@utility font-heading {
+  font-family: var(--font-heading);
+}
+
+/* Hide Scrollbar */
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Auto-Hide Scrollbar */
+@utility scrollbar-autohide {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 0.3s ease;
+
+  &:hover {
+    scrollbar-color: #c5a880 transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: #c5a880;
+  }
+}
+
+/* Scrollbar Visible Minimalis */
+@utility scrollbar-visible {
+  scrollbar-width: thin;
+  scrollbar-color: #c5a880 transparent;
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #c5a880;
+  }
+}
+
+/* ---------- Utilities untuk Scroll Reveal ---------- */
+
+/* Reveal dari Bawah (Default) */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reveal dari Kiri */
+@utility reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+
+  &.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Reveal dari Kanan */
+@utility reveal-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+
+  &.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

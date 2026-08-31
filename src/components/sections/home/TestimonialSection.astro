@@ -1,0 +1,119 @@
+---
+// src/components/sections/home/TestimonialSection.astro
+import { clientTestimonials } from '../../../config/content'
+---
+
+<section class="relative border-t border-border bg-surface py-20 lg:py-32">
+  <!-- Container Lebar (Mepet Screen) -->
+  <div class="mx-auto max-w-[96rem] px-6 lg:px-12">
+
+    <!-- Alpine.js Carousel Container -->
+    <div
+      x-data={`{
+        activeSlide: 0,
+        totalSlides: ${clientTestimonials.length},
+        next() { this.activeSlide = (this.activeSlide + 1) % this.totalSlides },
+        prev() { this.activeSlide = (this.activeSlide - 1 + this.totalSlides) % this.totalSlides }
+      }`}
+      class="relative"
+    >
+      <!-- Section Header Editorial -->
+      <div class="reveal flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <div>
+          <span class="mb-3 block text-xs font-semibold uppercase tracking-[0.3em] text-accent sm:text-sm">
+            Client Stories & Words
+          </span>
+          <h2 class="font-heading text-4xl font-normal uppercase leading-[1.05] text-primary sm:text-6xl lg:text-7xl">
+            Ulasan Klien VIP
+          </h2>
+        </div>
+
+        <!-- Slider Navigation Controls -->
+        <div class="flex items-center gap-3">
+          <button
+            type="button"
+            x-on:click="prev()"
+            class="flex h-12 w-12 items-center justify-center rounded-full border border-primary/30 text-primary transition-colors hover:border-accent hover:bg-accent hover:text-white focus:outline-none"
+            aria-label="Previous Testimonial"
+          >
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+          </button>
+          <button
+            type="button"
+            x-on:click="next()"
+            class="flex h-12 w-12 items-center justify-center rounded-full border border-primary bg-primary text-white transition-colors hover:bg-primary-hover focus:outline-none"
+            aria-label="Next Testimonial"
+          >
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Divider Line -->
+      <div class="reveal my-10 h-[1px] w-full bg-border"></div>
+
+      <!-- Testimonial Slides Container -->
+      <div class="reveal relative min-h-[300px] overflow-hidden">
+        {
+          clientTestimonials.map((item, index) => (
+            <div
+              x-show={`activeSlide === ${index}`}
+              x-transition:enter="transition ease-out duration-500"
+              x-transition:enter-start="opacity-0 translate-x-8"
+              x-transition:enter-end="opacity-100 translate-x-0"
+              x-transition:leave="transition ease-in duration-300 absolute inset-0"
+              x-transition:leave-start="opacity-100 translate-x-0"
+              x-transition:leave-end="opacity-0 -translate-x-8"
+              x-cloak
+              class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12"
+            >
+              <!-- Big Quote Text (8 Cols) -->
+              <div class="lg:col-span-8 flex flex-col justify-between">
+                <div>
+                  <!-- Quote Icon decorative -->
+                  <span class="font-heading text-6xl text-accent/40 leading-none font-bold block mb-2">“</span>
+                  <p class="font-heading text-2xl font-light italic leading-relaxed text-primary sm:text-3xl lg:text-4xl">
+                    {item.quote}
+                  </p>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-border/60">
+                  <h3 class="font-heading text-lg font-bold uppercase tracking-wider text-primary sm:text-xl">
+                    {item.clientName}
+                  </h3>
+                  <p class="text-xs uppercase tracking-widest text-accent font-semibold mt-1">
+                    {item.role} — <span class="text-secondary/70">{item.event}</span>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Rating & Trust Badge (4 Cols) -->
+              <div class="lg:col-span-4 flex flex-col justify-center border border-border bg-surface-card p-8 shadow-sm">
+                <div class="flex items-center gap-1 text-accent">
+                  {Array.from({ length: item.rating }).map(() => (
+                    <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                      <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                  ))}
+                </div>
+
+                <h4 class="mt-4 font-heading text-lg font-semibold uppercase text-primary">
+                  Pengalaman Bintang 5
+                </h4>
+                <p class="mt-2 text-xs text-secondary/75 leading-relaxed">
+                  Setiap buket dan penataan dekorasi dirancang presisi dengan standar kesegaran bunga impor tanpa kompromi.
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+    </div>
+
+  </div>
+</section>

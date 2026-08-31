@@ -1,0 +1,21 @@
+---
+// src/pages/tentang-kami.astro
+import Layout from '../layouts/Layout.astro';
+import PhilosophyCraft from '../components/sections/about/PhilosophyCraft.astro';
+import MasterFlorist from '../components/sections/about/MasterFlorist.astro';
+import QualityCommitment from '../components/sections/about/QualityCommitment.astro';
+import CTASection from '../components/sections/home/CtaSection.astro';
+import { siteConfig } from '../config/site';
+---
+
+<Layout
+  title={`Tentang Kami — ${siteConfig.name}`}
+  description="Filosofi craftsmanship, profil Master Florist, dan komitmen standar kesegaran bunga eksklusif Aura Fleur."
+>
+  <main>
+    <PhilosophyCraft />
+    <MasterFlorist />
+    <QualityCommitment />
+    <CTASection />
+  </main>
+</Layout>

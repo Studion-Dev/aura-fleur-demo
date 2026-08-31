@@ -1,0 +1,25 @@
+---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+import HeroSection from '../components/sections/home/HeroSection.astro';
+import BrandNarrative from '../components/sections/home/BrandNarrative.astro';
+import CuratedPreview from '../components/sections/home/CuratedPreview.astro';
+import ServicesHighlight from '../components/sections/home/ServicesHighlight.astro';
+import TestimonialSection from '../components/sections/home/TestimonialSection.astro';
+import CtaSection from '../components/sections/home/CtaSection.astro';
+import { siteConfig } from '../config/site';
+---
+
+<Layout
+  title={`${siteConfig.name} — ${siteConfig.tagline}`}
+  description={siteConfig.description}
+>
+  <main>
+    <HeroSection />
+    <BrandNarrative />
+    <CuratedPreview />
+    <ServicesHighlight />
+    <TestimonialSection />
+    <CtaSection />
+  </main>
+</Layout>

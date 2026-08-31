@@ -1,0 +1,116 @@
+---
+// src/components/sections/home/ServicesHighlight.astro
+import { serviceList } from '../../../config/content'
+import { siteConfig } from '../../../config/site'
+---
+
+<section class="relative border-t border-border bg-surface py-20 lg:py-32">
+  <!-- Container Lebar (Mepet Screen) -->
+  <div class="mx-auto max-w-[96rem] px-6 lg:px-12">
+
+    <!-- Section Header Editorial (Fixed Flex Layout) -->
+    <div class="reveal flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <div class="max-w-4xl">
+        <span class="mb-3 block text-xs font-semibold uppercase tracking-[0.3em] text-accent sm:text-sm">
+          Bespoke Floral Design
+        </span>
+        <h2 class="font-heading text-4xl font-normal uppercase leading-[1.05] text-primary sm:text-6xl lg:text-7xl">
+          Layanan Penataan Eksklusif
+        </h2>
+      </div>
+
+      <p class="max-w-md text-sm leading-relaxed text-secondary/80 sm:text-base md:pb-2">
+        Dari hari pernikahan impian hingga penataan rutin ruang VIP korporat Anda. Kami merancang atmosfer seni floral tanpa cela.
+      </p>
+    </div>
+
+    <!-- Divider Line -->
+    <div class="reveal my-10 h-[1px] w-full bg-border"></div>
+
+    <!-- Services Showcase Cards -->
+    <div class="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+      {
+        serviceList.map((service, index) => (
+          <div class={`reveal delay-${(index + 1) * 200} group relative flex flex-col justify-between border border-border bg-surface-card transition-all duration-500 hover:shadow-2xl`}>
+
+            <!-- Service Image Container -->
+            <div class="relative aspect-[16/10] w-full overflow-hidden bg-primary/5">
+              <img
+                src={service.image}
+                alt={service.title}
+                class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-primary/20 to-transparent"></div>
+
+              <div class="absolute bottom-6 left-6 right-6">
+                <span class="text-[10px] font-semibold uppercase tracking-[0.25em] text-accent">
+                  {service.subtitle}
+                </span>
+                <h3 class="mt-1 font-heading text-2xl font-bold uppercase text-white sm:text-3xl">
+                  {service.title}
+                </h3>
+              </div>
+            </div>
+
+            <!-- Content Details -->
+            <div class="flex flex-1 flex-col justify-between p-8 sm:p-10">
+              <p class="text-sm leading-relaxed text-secondary/80 sm:text-base">
+                {service.description}
+              </p>
+
+              <!-- Feature Checklist -->
+              <ul class="mt-6 flex flex-col gap-3 border-t border-border/80 pt-6">
+                {
+                  service.features.map((feature) => (
+                    <li class="flex items-center gap-3 text-xs uppercase tracking-wider text-secondary/90 sm:text-sm">
+                      <svg class="h-4 w-4 shrink-0 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                      </svg>
+                      <span>{feature}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+
+              <!-- Action Link -->
+              <div class="mt-8 pt-4">
+                <a
+                  href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Halo%20Aura%20Fleur,%20saya%20tertarik%20konsultasi%20layanan%20*${encodeURIComponent(service.title)}*.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex w-full items-center justify-center border border-primary bg-primary py-4 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-300 hover:bg-primary-hover focus:outline-none"
+                >
+                  Konsultasi Layanan Ini
+                </a>
+              </div>
+            </div>
+
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Bottom Banner CTA -->
+    <div class="reveal mt-16 border border-accent/40 bg-primary/95 p-8 text-white shadow-xl sm:p-12 lg:flex lg:items-center lg:justify-between">
+      <div class="max-w-2xl">
+        <h3 class="font-heading text-2xl font-normal uppercase tracking-wide text-white sm:text-3xl">
+          Butuh Konsep Floral Kustom Untuk Acara Spesial?
+        </h3>
+        <p class="mt-2 text-xs uppercase tracking-wider text-white/80 sm:text-sm">
+          Master florist kami siap menyusun proposal visual dan moodboard eksklusif untuk Anda.
+        </p>
+      </div>
+
+      <div class="mt-6 lg:mt-0 lg:shrink-0">
+        <a
+          href="/layanan"
+          class="inline-flex items-center justify-center border border-accent bg-accent px-8 py-4 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-accent-hover"
+        >
+          Lihat Detail Layanan
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,167 @@
+---
+// src/components/core/Navbar.astro
+import { siteConfig } from '../../config/site';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header
+  x-data="{ isOpen: false, scrolled: false }"
+  x-on:scroll.window="scrolled = (window.pageYOffset > 50)"
+  :class=`scrolled
+    ? 'bg-surface/90 backdrop-blur-md border-b border-border shadow-xs py-4'
+    : 'bg-transparent border-b border-transparent py-6 md:py-8'`
+  class="reveal fixed top-0 z-50 w-full transition-all duration-500 ease-in-out"
+  x-cloak
+>
+  <nav
+    class="relative mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-12"
+  >
+    <!-- Brand Logo: Berpindah dari Tengah (Top) ke Kiri (Scrolled) -->
+    <a
+      href="/"
+      :class=`scrolled
+        ? 'translate-x-0 left-0 relative'
+        : 'md:absolute md:left-1/2 md:-translate-x-1/2 left-0 relative'`
+      class="group flex flex-col items-start transition-all duration-500 ease-in-out focus:outline-none md:items-center"
+    >
+      <span
+        class="font-heading text-primary group-hover:text-accent text-xl font-bold tracking-widest uppercase transition-colors sm:text-2xl"
+      >
+        {siteConfig.name}
+      </span>
+      <span
+        x-show="!scrolled"
+        x-collapse
+        class="text-secondary/60 text-[9px] tracking-[0.2em] uppercase transition-opacity duration-300"
+      >
+        Haute Couture Floral
+      </span>
+    </a>
+
+    <!-- Desktop Navigation Links: Fade In & Slide Up Saat Scrolled -->
+    <div
+      class="hidden items-center transition-all duration-500 ease-in-out md:flex"
+      :class="scrolled ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'"
+    >
+      <ul class="flex items-center gap-8">
+        {
+          siteConfig.navigation.map((item) => {
+            const isActive =
+              currentPath === item.href ||
+              (item.href !== '/' && currentPath.startsWith(item.href));
+            return (
+              <li>
+                <a
+                  href={item.href}
+                  class:list={[
+                    'focus-visible:text-accent group relative py-1 text-xs tracking-widest uppercase transition-colors duration-300 focus:outline-none',
+                    'after:bg-accent after:absolute after:bottom-0 after:left-0 after:h-[1.5px] after:w-full after:origin-left after:transition-transform after:duration-300 after:ease-out',
+                    isActive
+                      ? 'text-accent font-semibold after:scale-x-100'
+                      : 'text-secondary/80 hover:text-accent after:scale-x-0 hover:after:scale-x-100',
+                  ]}
+                >
+                  {item.name}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+
+    <!-- Desktop CTA Action: Fade In Saat Scrolled -->
+    <div
+      class="hidden items-center transition-all duration-500 ease-in-out md:flex"
+      :class="scrolled ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'"
+    >
+      <a
+        href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Halo%20Aura%20Fleur,%20saya%20ingin%20konsultasi%20pesanan%20bunga.`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="border-primary text-primary hover:bg-primary focus-visible:ring-primary border px-5 py-2.5 text-xs font-semibold tracking-widest uppercase transition-all duration-300 hover:text-white focus:outline-none focus-visible:ring-2"
+      >
+        Konsultasi WA
+      </a>
+    </div>
+
+    <!-- Mobile Hamburger Button (Tetap Muncul di Mobile) -->
+    <button
+      type="button"
+      x-on:click="isOpen = !isOpen"
+      class="text-primary inline-flex items-center justify-center p-2 focus:outline-none md:hidden"
+      aria-label="Toggle Menu Navigation"
+      :aria-expanded="isOpen"
+    >
+      <svg
+        class="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        x-show="!isOpen"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+      <svg
+        class="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        x-show="isOpen"
+        x-cloak
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile Drawer Menu -->
+  <div
+    x-show="isOpen"
+    x-collapse
+    x-cloak
+    class="border-border bg-surface border-b px-6 py-6 md:hidden"
+  >
+    <ul class="flex flex-col gap-4">
+      {
+        siteConfig.navigation.map((item) => {
+          const isActive = currentPath === item.href;
+          return (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  'block py-1 text-sm tracking-widest uppercase transition-colors',
+                  isActive
+                    ? 'text-accent font-bold'
+                    : 'text-secondary/80 hover:text-accent',
+                ]}
+              >
+                {item.name}
+              </a>
+            </li>
+          );
+        })
+      }
+      <li class="pt-2">
+        <a
+          href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Halo%20Aura%20Fleur,%20saya%20ingin%20konsultasi%20pesanan%20bunga.`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="border-primary bg-primary block w-full border py-3 text-center text-xs font-semibold tracking-widest text-white uppercase transition-colors"
+        >
+          Konsultasi WhatsApp
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>

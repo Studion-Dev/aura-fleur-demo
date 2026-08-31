@@ -1,0 +1,17 @@
+---
+// src/pages/koleksi.astro
+import Layout from '../layouts/Layout.astro';
+import CatalogGrid from '../components/sections/collections/CatalogGrid.astro';
+import CTASection from '../components/sections/home/CtaSection.astro';
+import { siteConfig } from '../config/site';
+---
+
+<Layout
+  title={`Katalog Koleksi — ${siteConfig.name}`}
+  description="Katalog buket bunga eksklusif, bloom box beludru, dan papan ucapan grand opening pilihan Aura Fleur."
+>
+  <main>
+    <CatalogGrid />
+    <CTASection />
+  </main>
+</Layout>

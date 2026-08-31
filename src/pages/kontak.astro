@@ -1,0 +1,21 @@
+---
+// src/pages/kontak.astro
+import Layout from '../layouts/Layout.astro';
+import ContactBookingForm from '../components/sections/contact/ContactBookingForm.astro';
+import AtelierInfoMap from '../components/sections/contact/AtelierInfoMap.astro';
+import ContactFAQ from '../components/sections/contact/ContactFaq.astro';
+import CTASection from '../components/sections/home/CtaSection.astro';
+import { siteConfig } from '../config/site';
+---
+
+<Layout
+  title={`Kontak & Atelier Booking — ${siteConfig.name}`}
+  description="Form reservasi konsultasi, info alamat atelier Aura Fleur, lokasi Google Maps, dan FAQ layanan."
+>
+  <main>
+    <ContactBookingForm />
+    <AtelierInfoMap />
+    <ContactFAQ />
+    <CTASection />
+  </main>
+</Layout>

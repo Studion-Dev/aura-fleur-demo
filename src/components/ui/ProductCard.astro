@@ -1,0 +1,93 @@
+---
+// src/components/ui/ProductCard.astro
+import type { ProductItem } from '../../config/content';
+import { siteConfig } from '../../config/site';
+
+export interface Props {
+  product: ProductItem;
+  class?: string;
+}
+
+const { product, class: className = '' } = Astro.props;
+
+const waMessage = encodeURIComponent(
+  `Halo Aura Fleur, saya tertarik untuk memesan koleksi *${product.name}* (${product.price}). Apakah unit ini tersedia?`
+);
+---
+
+<div
+  class:list={[
+    'group border-border bg-surface-card relative flex flex-col justify-between border transition-all duration-500 hover:shadow-xl',
+    className,
+  ]}
+>
+  <div>
+    <!-- Media Image Container (Portrait Aspect Ratio) -->
+    <div class="bg-surface relative aspect-[3/4] w-full overflow-hidden">
+      <img
+        src={product.image}
+        alt={product.name}
+        class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        loading="lazy"
+      />
+
+      <!-- Overlay Gradient -->
+      <div
+        class="from-primary/30 absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+      >
+      </div>
+
+      <!-- Optional Badge -->
+      {
+        product.badge && (
+          <span class="border-accent/40 bg-primary/90 absolute top-4 left-4 border px-3 py-1 text-[10px] font-semibold tracking-widest text-white uppercase backdrop-blur-xs">
+            {product.badge}
+          </span>
+        )
+      }
+
+      <!-- Direct Order Button (Slide-Up on Hover) -->
+      <div
+        class="absolute inset-x-4 bottom-4 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
+      >
+        <a
+          href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${waMessage}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="border-accent bg-accent/90 hover:bg-accent flex w-full items-center justify-center border py-3 text-xs font-semibold tracking-widest text-white uppercase backdrop-blur-md transition-colors"
+        >
+          Pesan via WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Details Block -->
+    <div class="p-6">
+      <span
+        class="text-accent text-[10px] font-semibold tracking-[0.2em] uppercase"
+      >
+        {product.categoryLabel}
+      </span>
+      <h3
+        class="font-heading text-primary group-hover:text-accent mt-2 text-lg font-semibold tracking-wide transition-colors sm:text-xl"
+      >
+        {product.name}
+      </h3>
+      <p class="text-secondary/70 mt-2 line-clamp-2 text-xs leading-relaxed">
+        {product.description}
+      </p>
+    </div>
+  </div>
+
+  <!-- Price Footer -->
+  <div
+    class="border-border/60 flex items-center justify-between border-t px-6 py-4"
+  >
+    <span class="text-secondary/60 text-[11px] tracking-wider uppercase"
+      >Starting From</span
+    >
+    <span class="font-heading text-primary text-base font-bold sm:text-lg">
+      {product.price}
+    </span>
+  </div>
+</div>
