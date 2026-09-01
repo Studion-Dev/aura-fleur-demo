@@ -1,0 +1,58 @@
+---
+// src/components/sections/home/StatsSection.astro
+import { homeContent } from '../../../config/content';
+---
+
+<section
+  class="border-accent/20 bg-primary relative z-20 border-y py-8 text-white lg:py-10"
+>
+  <!-- Subtle Ambient Overlay -->
+  <div class="pointer-events-none absolute inset-0 opacity-5">
+    <svg
+      class="h-full w-full"
+      width="100%"
+      height="100%"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <pattern
+          id="stats-grid"
+          width="32"
+          height="32"
+          patternUnits="userSpaceOnUse"
+        >
+          <path
+            d="M 32 0 L 0 0 0 32"
+            fill="none"
+            stroke="#FFFFFF"
+            stroke-width="1"></path>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#stats-grid)"></rect>
+    </svg>
+  </div>
+
+  <div class="mx-auto max-w-[96rem] px-6 lg:px-12">
+    <div
+      class="md:divide-accent/20 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 md:divide-x"
+    >
+      {
+        homeContent.stats.map((stat, index) => (
+          <div
+            class={`reveal delay-${(index + 1) * 150} flex flex-col items-center text-center md:px-6 lg:px-8`}
+          >
+            <span class="font-heading text-accent text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+              {stat.value}
+            </span>
+            <span class="font-heading mt-1 text-xs font-semibold tracking-[0.2em] text-white/90 uppercase sm:text-sm">
+              {stat.label}
+            </span>
+            <p class="mt-1 max-w-[14rem] text-[11px] leading-snug font-light text-white/60">
+              {stat.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

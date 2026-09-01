@@ -18,7 +18,7 @@ export const siteConfig = {
     { name: 'Beranda', href: '/' },
     { name: 'Tentang Kami', href: '/tentang-kami' },
     { name: 'Koleksi', href: '/koleksi' },
-    { name: 'Layanan', href: '/layanan' },
+    { name: 'Galeri', href: '/galeri' },
     { name: 'Kontak', href: '/kontak' },
   ],
   socials: {

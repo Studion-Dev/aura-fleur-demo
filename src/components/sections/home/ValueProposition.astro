@@ -1,0 +1,49 @@
+---
+// src/components/sections/home/ValueProposition.astro
+import { homeContent } from '../../../config/content'
+---
+
+<section class="relative bg-surface py-24 lg:py-36 border-t border-border">
+  <div class="mx-auto max-w-[96rem] px-6 lg:px-12">
+
+    <!-- Section Header Minimalis -->
+    <div class="reveal max-w-3xl">
+      <span class="mb-3 block text-xs font-semibold uppercase tracking-[0.3em] text-accent sm:text-sm">
+        Why Choose Aura Fleur
+      </span>
+      <h2 class="font-heading text-4xl font-normal uppercase leading-tight text-primary sm:text-6xl lg:text-7xl">
+        Pilar Kemewahan & Standar Karya
+      </h2>
+    </div>
+
+    <!-- Grid 3 Kolom Borderless & Spacious -->
+    <div class="mt-20 grid grid-cols-1 gap-12 md:grid-cols-3 lg:gap-16">
+      {
+        homeContent.values.map((item, index) => (
+          <div class={`reveal delay-${(index + 1) * 200} flex flex-col justify-between`}>
+            <div>
+              <!-- Nomor Raksasa Emas -->
+              <span class="font-heading text-6xl font-light text-accent/80 lg:text-7xl block">
+                {item.number}
+              </span>
+
+              <!-- Title -->
+              <h3 class="mt-6 font-heading text-2xl font-bold uppercase tracking-wide text-primary">
+                {item.title}
+              </h3>
+
+              <!-- Divider Tipis -->
+              <div class="my-6 h-[1px] w-12 bg-accent/50"></div>
+
+              <!-- Description -->
+              <p class="text-sm font-light leading-relaxed text-secondary/80 sm:text-base">
+                {item.description}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+  </div>
+</section>

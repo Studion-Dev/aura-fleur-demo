@@ -1,25 +1,27 @@
 ---
 // src/pages/index.astro
-import Layout from '../layouts/Layout.astro';
+import MainLayout from '../layouts/Layout.astro';
 import HeroSection from '../components/sections/home/HeroSection.astro';
-import BrandNarrative from '../components/sections/home/BrandNarrative.astro';
-import CuratedPreview from '../components/sections/home/CuratedPreview.astro';
-import ServicesHighlight from '../components/sections/home/ServicesHighlight.astro';
+import StatsSection from '../components/sections/home/StatsSection.astro';
+import ServicesOverview from '../components/sections/home/ServicesOverview.astro';
+import ValueProposition from '../components/sections/home/ValueProposition.astro';
+import ProductHighlight from '../components/sections/home/ProductHighlight.astro';
+import QualityDeepDive from '../components/sections/home/QualityDeepDive.astro';
+import GalleryHighlight from '../components/sections/home/GalleryHighlight.astro';
 import TestimonialSection from '../components/sections/home/TestimonialSection.astro';
-import CtaSection from '../components/sections/home/CtaSection.astro';
-import { siteConfig } from '../config/site';
+import FAQSection from '../components/sections/home/FAQSection.astro';
+import CtaBanner from '../components/sections/home/CtaBanner.astro';
 ---
 
-<Layout
-  title={`${siteConfig.name} — ${siteConfig.tagline}`}
-  description={siteConfig.description}
->
-  <main>
-    <HeroSection />
-    <BrandNarrative />
-    <CuratedPreview />
-    <ServicesHighlight />
-    <TestimonialSection />
-    <CtaSection />
-  </main>
-</Layout>
+<MainLayout title="Aura Fleur — Seni Floral, Keanggunan Tanpa Batas">
+  <HeroSection />
+  <ServicesOverview />
+  <StatsSection />
+  <ValueProposition />
+  <ProductHighlight />
+  <QualityDeepDive />
+  <GalleryHighlight />
+  <TestimonialSection />
+  <FAQSection />
+  <CtaBanner />
+</MainLayout>

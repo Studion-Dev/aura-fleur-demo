@@ -1,0 +1,44 @@
+---
+// src/components/sections/about/QualityPillars.astro
+import { aboutContent } from '../../../config/content';
+---
+
+<section class="bg-surface border-border relative border-t py-20 lg:py-32">
+  <div class="mx-auto max-w-[96rem] px-6 lg:px-12">
+    <div class="reveal max-w-3xl">
+      <span
+        class="text-accent mb-3 block text-xs font-semibold tracking-[0.3em] uppercase"
+      >
+        Pillars of Excellence
+      </span>
+      <h2
+        class="font-heading text-primary text-4xl leading-tight font-normal uppercase sm:text-6xl"
+      >
+        Standar Kualitas Aura Fleur
+      </h2>
+    </div>
+
+    <!-- 3 Pillars Grid (Clean, Spacious) -->
+    <div class="mt-16 grid grid-cols-1 gap-12 md:grid-cols-3 lg:gap-16">
+      {
+        aboutContent.pillars.map((pillar, index) => (
+          <div
+            class={`reveal delay-${(index + 1) * 200} flex flex-col justify-between`}
+          >
+            <div>
+              <span class="font-heading text-accent/80 block text-5xl font-light lg:text-6xl">
+                0{index + 1}
+              </span>
+              <h3 class="font-heading text-primary mt-4 text-2xl font-bold tracking-wide uppercase">
+                {pillar.title}
+              </h3>
+              <p class="text-secondary/80 mt-4 text-sm leading-relaxed font-light">
+                {pillar.description}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

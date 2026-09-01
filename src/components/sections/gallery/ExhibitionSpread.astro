@@ -1,0 +1,93 @@
+---
+// src/components/sections/gallery/ExhibitionSpread.astro
+import { galleryList } from '../../../config/content';
+
+const mainExhibition = galleryList[0];
+---
+
+<section class="bg-surface relative overflow-hidden py-20 lg:py-28">
+  <div class="mx-auto max-w-[96rem] px-6 lg:px-12">
+    <div class="reveal mb-8">
+      <span
+        class="text-accent mb-2 block text-xs font-semibold tracking-[0.3em] uppercase"
+      >
+        Exhibition Spotlight
+      </span>
+      <h2
+        class="font-heading text-primary text-3xl font-normal uppercase sm:text-4xl"
+      >
+        Masterpiece Installation
+      </h2>
+    </div>
+
+    <!-- Layout Split 70% (Foto) : 30% (Informasi Konsep) -->
+    <div class="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-12">
+      <!-- Foto Raksasa (70% / 8 Cols) -->
+      <div class="reveal lg:col-span-8">
+        <div
+          class="border-border relative aspect-[16/10] w-full overflow-hidden border shadow-2xl"
+        >
+          <img
+            src={mainExhibition.image}
+            alt={mainExhibition.title}
+            class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+          />
+        </div>
+      </div>
+
+      <!-- Detail Konsep & Spesifikasi (30% / 4 Cols) -->
+      <div
+        class="reveal-right border-border bg-surface-card flex flex-col justify-between border p-8 shadow-xl lg:col-span-4"
+      >
+        <div>
+          <span class="text-accent text-xs font-bold tracking-widest uppercase">
+            {mainExhibition.category}
+          </span>
+          <h3
+            class="font-heading text-primary mt-2 text-2xl leading-snug font-bold uppercase sm:text-3xl"
+          >
+            {mainExhibition.title}
+          </h3>
+
+          <div class="bg-accent/60 my-6 h-[1px] w-12"></div>
+
+          <div class="text-primary/90 flex flex-col gap-4 text-xs">
+            <div>
+              <span
+                class="text-secondary/60 block font-bold tracking-wider uppercase"
+                >Lokasi Venue:</span
+              >
+              <span class="text-sm font-semibold"
+                >The St. Regis Grand Ballroom, Jakarta</span
+              >
+            </div>
+            <div>
+              <span
+                class="text-secondary/60 block font-bold tracking-wider uppercase"
+                >Konsep Design:</span
+              >
+              <span class="text-sm font-semibold"
+                >Opulent European Classical Garden</span
+              >
+            </div>
+            <div>
+              <span
+                class="text-secondary/60 block font-bold tracking-wider uppercase"
+                >Varietas Bunga:</span
+              >
+              <span class="text-sm font-semibold"
+                >Ecuadorean Crimson Rose, White Peony, Hydrangea</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="border-border mt-8 border-t pt-4">
+          <span class="text-secondary/50 text-[10px] tracking-widest uppercase">
+            Archived Project — 2026
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

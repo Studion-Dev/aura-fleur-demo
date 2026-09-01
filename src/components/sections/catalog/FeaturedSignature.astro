@@ -1,0 +1,120 @@
+---
+// src/components/sections/catalog/FeaturedSignature.astro
+import { productList } from '../../../config/content';
+import { siteConfig } from '../../../config/site';
+
+// Ambil produk signature pertama
+const signatureItem =
+  productList.find((p) => p.badge === 'Signature') || productList[0];
+---
+
+<section
+  class="bg-surface border-border relative overflow-hidden border-t py-20 lg:py-28"
+>
+  <div class="mx-auto max-w-[96rem] px-6 lg:px-12">
+    <div class="reveal mb-12">
+      <span
+        class="text-accent mb-3 block text-xs font-semibold tracking-[0.3em] uppercase"
+      >
+        Atelier Masterpiece
+      </span>
+      <h2
+        class="font-heading text-primary text-3xl leading-tight font-normal uppercase sm:text-5xl"
+      >
+        Featured Signature Selection
+      </h2>
+    </div>
+
+    <!-- Asymmetric Grid (8:4) -->
+    <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
+      <!-- Left Column (8 Cols): Large Image Showcase -->
+      <div class="reveal lg:col-span-8">
+        <div
+          class="border-border bg-surface-card relative aspect-[16/10] w-full overflow-hidden border shadow-2xl"
+        >
+          <img
+            src={signatureItem.image}
+            alt={signatureItem.name}
+            class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+          />
+          <span
+            class="bg-primary absolute top-4 left-4 px-4 py-1.5 text-xs font-bold tracking-widest text-white uppercase shadow-md"
+          >
+            Masterpiece Edition
+          </span>
+        </div>
+      </div>
+
+      <!-- Right Column (4 Cols): Material Specs & Direct Action -->
+      <div
+        class="reveal-right border-border bg-surface-card flex flex-col justify-between border p-8 shadow-xl lg:col-span-4 lg:p-10"
+      >
+        <div>
+          <span class="text-accent text-xs font-bold tracking-widest uppercase">
+            {signatureItem.categoryLabel}
+          </span>
+          <h3
+            class="font-heading text-primary mt-2 text-2xl leading-snug font-bold uppercase sm:text-3xl"
+          >
+            {signatureItem.name}
+          </h3>
+
+          <div class="bg-accent/60 my-6 h-[1px] w-16"></div>
+
+          <p
+            class="text-secondary/80 text-xs leading-relaxed font-light sm:text-sm"
+          >
+            {signatureItem.description}
+          </p>
+
+          <!-- Specifications List -->
+          <div
+            class="border-border/60 text-primary/90 mt-6 flex flex-col gap-2.5 border-t pt-6 text-xs"
+          >
+            <div class="flex justify-between">
+              <span class="text-secondary/60 font-bold tracking-wider uppercase"
+                >Asal Bunga:</span
+              >
+              <span class="font-semibold">Direct Import Ekuador</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary/60 font-bold tracking-wider uppercase"
+                >Vessel / Vas:</span
+              >
+              <span class="font-semibold">Handcrafted Ceramic</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary/60 font-bold tracking-wider uppercase"
+                >Ketahanan:</span
+              >
+              <span class="font-semibold">7-10 Hari (Cold-Chain)</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="border-border mt-8 flex items-center justify-between gap-4 border-t pt-6"
+        >
+          <div>
+            <span
+              class="text-secondary/50 block text-[10px] tracking-wider uppercase"
+              >Mulai Dari</span
+            >
+            <span class="font-heading text-primary text-lg font-bold"
+              >{signatureItem.price}</span
+            >
+          </div>
+
+          <a
+            href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Halo%20Aura%20Fleur,%20saya%20tertarik%20memesan%20Signature%20Masterpiece%20*${encodeURIComponent(signatureItem.name)}*.`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="border-primary bg-primary hover:bg-primary-hover border px-6 py-3 text-xs font-bold tracking-widest text-white uppercase transition-colors"
+          >
+            Pesan Masterpiece
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

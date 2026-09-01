@@ -1,0 +1,68 @@
+---
+// src/components/sections/home/GalleryHighlight.astro
+import { galleryList } from '../../../config/content'
+---
+
+<section class="relative bg-surface py-24 lg:py-36 border-t border-border overflow-hidden">
+  <div class="mx-auto max-w-[96rem] px-6 lg:px-12">
+
+    <!-- Header Section -->
+    <div class="reveal flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <div class="max-w-4xl">
+        <span class="mb-3 block text-xs font-semibold uppercase tracking-[0.3em] text-accent sm:text-sm">
+          Visual Portfolio
+        </span>
+        <h2 class="font-heading text-4xl font-normal uppercase leading-tight text-primary sm:text-6xl lg:text-7xl">
+          Galeri Lookbook & Karya
+        </h2>
+      </div>
+
+      <a
+        href="/galeri"
+        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors"
+      >
+        <span>Lihat Seluruh Galeri</span>
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Asymmetric Mosaic Grid (4 Items) -->
+    <div class="mt-16 grid grid-cols-1 gap-6 md:grid-cols-12 lg:gap-8">
+      {
+        galleryList.map((item, index) => {
+          // Buat layout asimetris ala koran/majalah:
+          // Item 1: Col span 7 (Wide)
+          // Item 2: Col span 5 (Tall)
+          // Item 3: Col span 5 (Tall)
+          // Item 4: Col span 7 (Wide)
+          const colSpan = (index === 0 || index === 3) ? 'md:col-span-7 aspect-[16/10]' : 'md:col-span-5 aspect-[4/5]'
+
+          return (
+            <div class={`reveal delay-${(index + 1) * 150} group relative overflow-hidden border border-border bg-surface-card ${colSpan}`}>
+              <img
+                src={item.image}
+                alt={item.title}
+                class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+              />
+
+              <!-- Overlay Text on Hover -->
+              <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-95"></div>
+
+              <div class="absolute bottom-6 left-6 right-6 text-white transition-transform duration-300 group-hover:-translate-y-1">
+                <span class="text-[10px] font-semibold uppercase tracking-widest text-accent">
+                  {item.category}
+                </span>
+                <h3 class="font-heading mt-1 text-xl font-bold uppercase tracking-wide">
+                  {item.title}
+                </h3>
+              </div>
+            </div>
+          )
+        })
+      }
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,64 @@
+---
+// src/components/sections/gallery/AtelierBehindTheScenes.astro
+const btsImages = [
+  {
+    title: 'Selection & Cold-Chain Storage',
+    image:
+      'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=800&auto=format&fit=crop',
+  },
+  {
+    title: 'Artisan Handcrafting Process',
+    image:
+      'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=800&auto=format&fit=crop',
+  },
+  {
+    title: 'White-Glove Van Delivery',
+    image:
+      'https://images.unsplash.com/photo-1508615070457-7baeba4003ab?q=80&w=800&auto=format&fit=crop',
+  },
+];
+---
+
+<section
+  class="bg-primary border-border relative overflow-hidden border-t py-20 text-white lg:py-32"
+>
+  <div class="mx-auto max-w-[96rem] px-6 lg:px-12">
+    <div class="reveal mb-12 max-w-xl">
+      <span
+        class="text-accent mb-3 block text-xs font-semibold tracking-[0.3em] uppercase"
+      >
+        The Process
+      </span>
+      <h2
+        class="font-heading text-3xl font-normal text-white uppercase sm:text-5xl"
+      >
+        Behind The Scenes
+      </h2>
+    </div>
+
+    <!-- 3 Step BTS Grid -->
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-10">
+      {
+        btsImages.map((bts, index) => (
+          <div class={`reveal delay-${(index + 1) * 150} flex flex-col`}>
+            <div class="aspect-[4/3] w-full overflow-hidden border border-white/20">
+              <img
+                src={bts.image}
+                alt={bts.title}
+                class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </div>
+            <div class="mt-4 flex items-center gap-3">
+              <span class="font-heading text-accent text-sm font-bold">
+                0{index + 1}
+              </span>
+              <h3 class="font-heading text-sm font-bold tracking-wider text-white uppercase">
+                {bts.title}
+              </h3>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

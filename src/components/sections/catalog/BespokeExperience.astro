@@ -1,0 +1,60 @@
+---
+// src/components/sections/catalog/BespokeExperience.astro
+import { siteConfig } from '../../../config/site';
+---
+
+<section
+  class="bg-surface border-border relative overflow-hidden border-t py-20 lg:py-32"
+>
+  <div class="mx-auto max-w-[96rem] px-6 lg:px-12">
+    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+      <!-- SISI KIRI (6 Cols): Clean Asymmetric Visual -->
+      <div class="reveal lg:col-span-6">
+        <div
+          class="border-border relative aspect-[4/5] w-full overflow-hidden border shadow-2xl"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1000&auto=format&fit=crop"
+            alt="Bespoke Floral Consultation"
+            class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+          />
+        </div>
+      </div>
+
+      <!-- SISI KANAN (6 Cols): Minimalist Narrative -->
+      <div class="reveal-right lg:col-span-6">
+        <span
+          class="text-accent mb-3 block text-xs font-semibold tracking-[0.3em] uppercase"
+        >
+          Tailored To Your Vision
+        </span>
+        <h2
+          class="font-heading text-primary text-4xl leading-tight font-normal uppercase sm:text-5xl lg:text-6xl"
+        >
+          Layanan Bespoke & Custom Moodboard
+        </h2>
+
+        <p
+          class="text-secondary/80 mt-6 text-base leading-relaxed font-light sm:text-lg"
+        >
+          Tidak menemukan pilihan yang sesuai di katalog? Master florist kami
+          siap merancang konsep floral kustom 100% sesuai skema warna, jenis
+          bunga langka, dan aura acara yang Anda impikan.
+        </p>
+
+        <div
+          class="border-border mt-10 flex flex-col gap-4 border-t pt-8 sm:flex-row sm:items-center"
+        >
+          <a
+            href={`https://wa.me/${siteConfig.contact.whatsapp}?text=Halo%20Aura%20Fleur,%20saya%20ingin%20konsultasi%20desain%20bespoke%20kustom.`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="border-primary bg-primary hover:bg-primary-hover border px-8 py-4 text-center text-xs font-bold tracking-widest text-white uppercase transition-all hover:scale-105"
+          >
+            Diskusi Konsep Kustom
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

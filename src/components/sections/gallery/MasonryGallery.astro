@@ -1,0 +1,71 @@
+---
+// src/components/sections/gallery/MasonryGallery.astro
+import { galleryList } from '../../../config/content'
+
+const categories = ['All', 'Weddings', 'Corporate', 'Details', 'Installations']
+---
+
+<section x-data="{ activeFilter: 'All' }" class="relative bg-surface py-16 lg:py-24 border-t border-border">
+  <div class="mx-auto max-w-[96rem] px-6 lg:px-12">
+
+    <!-- Minimalist Text Tabs Filter (Tanpa Box) -->
+    <div class="reveal border-b border-border pb-6">
+      <div class="flex flex-wrap items-center gap-6 sm:gap-10">
+        {
+          categories.map((cat) => (
+            <button
+              @click={`activeFilter = '${cat}'`}
+              :class={`activeFilter === '${cat}' ? 'text-primary font-bold border-b-2 border-primary' : 'text-secondary/60 font-medium hover:text-primary'`}
+              class="pb-2 font-heading text-xs uppercase tracking-[0.2em] transition-all duration-300 focus:outline-none"
+            >
+              {cat}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Asymmetric Staggered Grid -->
+    <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+      {
+        galleryList.map((item, index) => {
+          // Buat variasi rasio foto untuk gaya Masonry
+          const aspectRatios = ['aspect-[3/4]', 'aspect-[4/3]', 'aspect-square', 'aspect-[3/4]']
+          const colSpans = ['lg:col-span-4', 'lg:col-span-8', 'lg:col-span-6', 'lg:col-span-6']
+
+          const selectedAspect = aspectRatios[index % aspectRatios.length]
+          const selectedCol = colSpans[index % colSpans.length]
+
+          return (
+            <div
+              x-show={`activeFilter === 'All' || activeFilter === '${item.category}'`}
+              x-transition:enter="transition ease-out duration-300"
+              x-transition:enter-start="opacity-0 scale-95"
+              x-transition:enter-end="opacity-100 scale-100"
+              class={`group relative overflow-hidden border border-border bg-surface-card ${selectedCol}`}
+            >
+              <div class={`relative w-full ${selectedAspect}`}>
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-90"></div>
+
+                <div class="absolute bottom-6 left-6 right-6 text-white">
+                  <span class="text-[10px] font-semibold uppercase tracking-widest text-accent">
+                    {item.category}
+                  </span>
+                  <h3 class="font-heading mt-1 text-lg font-bold uppercase tracking-wide">
+                    {item.title}
+                  </h3>
+                </div>
+              </div>
+            </div>
+          )
+        })
+      }
+    </div>
+
+  </div>
+</section>
