@@ -42,6 +42,7 @@ export interface StatItem {
   label: string;
   value: string;
   description: string;
+  suffix: string;
 }
 
 export interface ValueProposition {
@@ -73,24 +74,28 @@ export const homeContent = {
   // Strip Stats Tipis di Bawah Hero
   stats: [
     {
-      value: '100%',
+      value: '100',
       label: 'Fresh Imports',
       description: 'Bunga impor Ekuador & Belanda pilihan',
+      suffix: '%',
     },
     {
-      value: '500+',
+      value: '500',
       label: 'Luxury Events',
       description: 'Dekorasi pernikahan & gala VIP',
+      suffix: '+',
     },
     {
-      value: '4.9/5',
+      value: '4.9',
       label: 'Client Rating',
       description: 'Kepuasan klien VIP & korporat',
+      suffix: '/5',
     },
     {
-      value: '2-5°C',
+      value: '4',
       label: 'Cold-Chain',
       description: 'Suhu penyimpanan presisi terjamin',
+      suffix: '°C',
     },
   ] as StatItem[],
 
@@ -192,7 +197,7 @@ export const collectionCategories = [
 ];
 
 export const productList: ProductItem[] = [
-  // 1 - 5 (Luxury Bouquets)
+  // --- Luxury Bouquets (prod-1 s/d prod-3) ---
   {
     id: 'prod-1',
     name: 'L’Amour Eternal Bouquet',
@@ -208,19 +213,6 @@ export const productList: ProductItem[] = [
   },
   {
     id: 'prod-2',
-    name: 'Opulent Peony Romance',
-    category: 'luxury-bouquet',
-    categoryLabel: 'Luxury Bouquet',
-    price: 'Rp 3.400.000',
-    priceNumber: 3400000,
-    description:
-      'Rangkaian mawar pink pastel dan peony impor segar yang memancarkan kelembutan nan mewah.',
-    image:
-      'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=800&auto=format&fit=crop',
-    badge: 'Limited Bloom',
-  },
-  {
-    id: 'prod-3',
     name: 'Grand White Phalaenopsis',
     category: 'luxury-bouquet',
     categoryLabel: 'Luxury Bouquet',
@@ -232,19 +224,7 @@ export const productList: ProductItem[] = [
       'https://images.unsplash.com/photo-1561181286-d3fee7d55364?q=80&w=800&auto=format&fit=crop',
   },
   {
-    id: 'prod-4',
-    name: 'Crimson Velvet Romance',
-    category: 'luxury-bouquet',
-    categoryLabel: 'Luxury Bouquet',
-    price: 'Rp 2.950.000',
-    priceNumber: 2950000,
-    description:
-      'Kombinasi mawar merah maroon Ekuador dengan aksen dried foliage dan pita sutra gelap.',
-    image:
-      'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 'prod-5',
+    id: 'prod-3',
     name: 'Elysian Garden Bouquet',
     category: 'luxury-bouquet',
     categoryLabel: 'Luxury Bouquet',
@@ -256,34 +236,9 @@ export const productList: ProductItem[] = [
       'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?q=80&w=800&auto=format&fit=crop',
   },
 
-  // 6 - 10 (Bloom Box & Vessels)
+  // --- Bloom Box & Vessels (prod-4) ---
   {
-    id: 'prod-6',
-    name: 'Velvet Romance Bloom Box',
-    category: 'bloom-box',
-    categoryLabel: 'Bloom Box & Vessel',
-    price: 'Rp 1.950.000',
-    priceNumber: 1950000,
-    description:
-      'Kotak beludru hitam eksklusif berisi mawar pastel, peony impor, dan hortensia lembut.',
-    image:
-      'https://images.unsplash.com/photo-1508615070457-7baeba4003ab?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 'prod-7',
-    name: 'Elysian Golden Bloom Box',
-    category: 'bloom-box',
-    categoryLabel: 'Bloom Box & Vessel',
-    price: 'Rp 2.200.000',
-    priceNumber: 2200000,
-    description:
-      'Kotak aksen emas dengan deretan mawar putih Ekuador dan baby breath impor.',
-    image:
-      'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=800&auto=format&fit=crop',
-    badge: 'Popular Gift',
-  },
-  {
-    id: 'prod-8',
+    id: 'prod-4',
     name: 'Royal Monogram Leather Box',
     category: 'bloom-box',
     categoryLabel: 'Bloom Box & Vessel',
@@ -294,34 +249,10 @@ export const productList: ProductItem[] = [
     image:
       'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=800&auto=format&fit=crop',
   },
-  {
-    id: 'prod-9',
-    name: 'Spring Serenade Ceramic Vessel',
-    category: 'bloom-box',
-    categoryLabel: 'Bloom Box & Vessel',
-    price: 'Rp 3.200.000',
-    priceNumber: 3200000,
-    description:
-      'Vas keramik buatan tangan diisi Tulip Belanda, Ranunculus, dan Hydrangea pilihan.',
-    image:
-      'https://images.unsplash.com/photo-1561181286-d3fee7d55364?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 'prod-10',
-    name: 'Symphony Crystal Vase',
-    category: 'bloom-box',
-    categoryLabel: 'Bloom Box & Vessel',
-    price: 'Rp 3.850.000',
-    priceNumber: 3850000,
-    description:
-      'Vas kristal mewah dengan penataan mawar, lili impor, dan ornamen perak murni.',
-    image:
-      'https://images.unsplash.com/photo-1508615070457-7baeba4003ab?q=80&w=800&auto=format&fit=crop',
-  },
 
-  // 11 - 15 (Wedding Styling)
+  // --- Wedding Styling (prod-5 s/d prod-9) ---
   {
-    id: 'prod-11',
+    id: 'prod-5',
     name: 'Opulent Grandeur Wedding Centerpiece',
     category: 'wedding',
     categoryLabel: 'Wedding Styling',
@@ -334,7 +265,7 @@ export const productList: ProductItem[] = [
     badge: 'Signature',
   },
   {
-    id: 'prod-12',
+    id: 'prod-6',
     name: 'Bridal Royal Cascade Bouquet',
     category: 'wedding',
     categoryLabel: 'Wedding Styling',
@@ -346,7 +277,7 @@ export const productList: ProductItem[] = [
       'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop',
   },
   {
-    id: 'prod-13',
+    id: 'prod-7',
     name: 'Aisle Floral Runner Set',
     category: 'wedding',
     categoryLabel: 'Wedding Styling',
@@ -358,7 +289,7 @@ export const productList: ProductItem[] = [
       'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800&auto=format&fit=crop',
   },
   {
-    id: 'prod-14',
+    id: 'prod-8',
     name: 'Grand Wedding Arch Installation',
     category: 'wedding',
     categoryLabel: 'Wedding Styling',
@@ -371,7 +302,7 @@ export const productList: ProductItem[] = [
     badge: 'Masterpiece',
   },
   {
-    id: 'prod-15',
+    id: 'prod-9',
     name: 'VIP Corsage & Boutonniere Suite',
     category: 'wedding',
     categoryLabel: 'Wedding Styling',
@@ -383,9 +314,9 @@ export const productList: ProductItem[] = [
       'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=800&auto=format&fit=crop',
   },
 
-  // 16 - 20 (Corporate Subscription & Events)
+  // --- Corporate Subscription (prod-10) ---
   {
-    id: 'prod-16',
+    id: 'prod-10',
     name: 'Executive Office Subscription',
     category: 'corporate',
     categoryLabel: 'Corporate Subscription',
@@ -395,55 +326,6 @@ export const productList: ProductItem[] = [
       'Langganan bunga segar mingguan untuk lobi hotel, kantor VIP, atau boutique outlet.',
     image:
       'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 'prod-17',
-    name: 'Grand Opening Mahogany Stand',
-    category: 'corporate',
-    categoryLabel: 'Corporate Subscription',
-    price: 'Rp 4.200.000',
-    priceNumber: 4200000,
-    description:
-      'Papan ucapan berbahan kayu mahoni ukir dengan rangkaian bunga impor megah.',
-    image:
-      'https://images.unsplash.com/photo-1508615070457-7baeba4003ab?q=80&w=800&auto=format&fit=crop',
-    badge: 'B2B Favorite',
-  },
-  {
-    id: 'prod-18',
-    name: 'Gala Dinner Table Arrangement',
-    category: 'corporate',
-    categoryLabel: 'Corporate Subscription',
-    price: 'Rp 5.500.000',
-    priceNumber: 5500000,
-    description:
-      'Rangkaian meja panjang untuk acara gala dinner perusahaan atau private brand launch.',
-    image:
-      'https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 'prod-19',
-    name: 'Boutique Lobby Flower Tower',
-    category: 'corporate',
-    categoryLabel: 'Corporate Subscription',
-    price: 'Rp 6.800.000',
-    priceNumber: 6800000,
-    description:
-      'Instalasi bunga vertikal tinggi khusus untuk menarik perhatian pengunjung boutique mewah.',
-    image:
-      'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 'prod-20',
-    name: 'Presidential Suite Arrangement',
-    category: 'corporate',
-    categoryLabel: 'Corporate Subscription',
-    price: 'Rp 4.900.000',
-    priceNumber: 4900000,
-    description:
-      'Penataan bunga eksklusif bernuansa tenang dan harum untuk kamar/ruangan tamu VIP.',
-    image:
-      'https://images.unsplash.com/photo-1561181286-d3fee7d55364?q=80&w=800&auto=format&fit=crop',
   },
 ];
 

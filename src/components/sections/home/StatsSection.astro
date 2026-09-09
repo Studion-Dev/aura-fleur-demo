@@ -39,11 +39,15 @@ import { homeContent } from '../../../config/content';
       {
         homeContent.stats.map((stat, index) => (
           <div
-            class={`reveal delay-${(index + 1) * 150} flex flex-col items-center text-center md:px-6 lg:px-8`}
+            class={`reveal flex flex-col items-center text-center md:px-6 lg:px-8`}
           >
-            <span class="font-heading text-accent text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-              {stat.value}
-            </span>
+            <div class="font-heading text-accent text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+              <span class="counter" data-target={stat.value}>
+                0
+              </span>
+              <span>{stat.suffix}</span>
+            </div>
+
             <span class="font-heading mt-1 text-xs font-semibold tracking-[0.2em] text-white/90 uppercase sm:text-sm">
               {stat.label}
             </span>

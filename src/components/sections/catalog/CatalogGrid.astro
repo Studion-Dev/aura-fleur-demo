@@ -7,7 +7,7 @@ import { siteConfig } from '../../../config/site'
 <section x-data="{ activeTab: 'all' }" class="relative bg-surface py-12 lg:py-24">
   <div class="mx-auto max-w-[96rem] px-4 sm:px-6 lg:px-12">
 
-    <!-- Horizontal Scroll Filter Bar (Mobile Optimized) -->
+    <!-- Horizontal Scroll Filter Bar -->
     <div class="reveal border-b border-border pb-4">
       <div class="flex items-center gap-2 sm:gap-4 overflow-x-auto no-scrollbar scroll-smooth pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
         {
@@ -24,7 +24,7 @@ import { siteConfig } from '../../../config/site'
       </div>
     </div>
 
-    <!-- Product Grid Section (Mobile 2 Kolom: grid-cols-2) -->
+    <!-- Product Grid Section -->
     <div class="mt-8 sm:mt-12 grid grid-cols-2 gap-3 sm:gap-8 lg:grid-cols-4 lg:gap-10">
       {
         productList.map((product) => (
@@ -96,7 +96,7 @@ import { siteConfig } from '../../../config/site'
       }
     </div>
 
-    <!-- Bespoke Services Showcase Grid (Tetap 1 kolom di mobile, 2 kolom di md) -->
+    <!-- Bespoke Services Showcase Grid -->
     <div
       x-show="activeTab === 'all' || activeTab === 'wedding' || activeTab === 'corporate'"
       class="mt-16 border-t border-border pt-16"
